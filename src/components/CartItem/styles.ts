@@ -34,10 +34,14 @@ export const Quantity = styled.span`
 
 export const Price = styled.span`
   margin-left: 20rem;
+`;
 
-  &::after {
-    content: "X";
-    color: var(--purple-100);
-    margin-left: 1.8rem;
-  }
+export const RemoveProductButton = styled.button`
+  height: 1.6rem;
+  font-size: 1.6rem;
+  color: var(--purple-100);
+  border: none;
+  background-color: transparent;
+  margin-left: 1.8rem;
+  cursor: pointer;
 `;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 28rem;
-  min-height: 34rem;
+  min-height: 34.6rem;
   border-radius: 1rem;
   box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.1);
   background-color: white;
@@ -16,10 +16,10 @@ export const ImgContainer = styled.div`
   height: 20rem;
   padding: 3rem;
   border-bottom: 0.1rem solid var(--gray-300);
+`;
 
-  & img {
-    width: 100%;
-  }
+export const Image = styled.img`
+  width: 100%;
 `;
 
 export const ProductInfoContainer = styled.div`
@@ -44,6 +44,7 @@ export const Description = styled.p`
 
 export const PriceContainer = styled.div`
   display: flex;
+  height: 2.6rem;
   align-items: center;
   gap: 2rem;
   margin-top: 2rem;

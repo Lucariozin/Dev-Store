@@ -1,6 +1,7 @@
 import * as Styles from './styles';
 
-import Image from 'next/image';
+import { useCart } from '../../hooks/useCart';
+import Router from 'next/router';
 
 interface ProductItemProps {
   id: number;
@@ -19,15 +20,23 @@ export function ProductItem({
   price,
   priceDiscount
 }: ProductItemProps) {
+  const { productIsAlreadyInTheCart, addProductInCart } = useCart();
+
+  function handleAddProductInCart() {
+    addProductInCart({
+      id,
+      description,
+      image: productImg,
+      price,
+      priceDiscount,
+      title,
+    });
+  }
+
   return (
     <Styles.Container>
       <Styles.ImgContainer>
-        <Image
-          src={productImg}
-          alt="Product's image"
-          width={220}
-          height={129}
-        />
+        <Styles.Image src={productImg} alt="Product's image" />
       </Styles.ImgContainer>
 
       <Styles.ProductInfoContainer>
@@ -36,16 +45,34 @@ export function ProductItem({
 
         <Styles.PriceContainer>
           <Styles.Prices>
-            <Styles.Price>${price.toFixed(2)}</Styles.Price>
-
+            {priceDiscount > 0 ? (
+              <Styles.Price>${priceDiscount.toFixed(2)}</Styles.Price>
+            ) : (
+              <Styles.Price>${price.toFixed(2)}</Styles.Price>
+            )}
+            
             {priceDiscount > 0 && (
-              <Styles.OldPrice>${priceDiscount.toFixed(2)}</Styles.OldPrice>
+              <Styles.OldPrice>${price.toFixed(2)}</Styles.OldPrice>
             )}
 
           </Styles.Prices>
           
-          {/* <Styles.InTheCartButton>in the cart</Styles.InTheCartButton> */}
-          <Styles.AddToCartButton>add to cart +</Styles.AddToCartButton>
+          {productIsAlreadyInTheCart(id) ? (
+            <Styles.InTheCartButton
+              type="button"
+              onClick={() => Router.push('/cart')}
+            >
+              in the cart
+            </Styles.InTheCartButton>
+          ) : (
+            <Styles.AddToCartButton
+              type="button"
+              onClick={handleAddProductInCart}
+            >
+              add to cart +
+            </Styles.AddToCartButton>
+          )}
+
         </Styles.PriceContainer>
       </Styles.ProductInfoContainer>
     </Styles.Container>

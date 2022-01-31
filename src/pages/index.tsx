@@ -4,15 +4,7 @@ import { api } from '../services/api';
 import { useEffect, useState } from 'react';
 
 import { ProductItem } from '../components/ProductItem';
-
-type Product = {
-  id: number;
-  image: string;
-  title: string;
-  description: string;
-  price: number;
-  priceDiscount: number;
-};
+import { Product } from '../@types/product';
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);

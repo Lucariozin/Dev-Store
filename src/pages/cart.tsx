@@ -1,8 +1,11 @@
 import * as Styles from '../styles/CartStyles';
 
 import { CartItem } from '../components/CartItem';
+import { useCart } from '../hooks/useCart';
 
 export default function Cart() {
+  const { productsInCart, totalPrice } = useCart();
+
   return (
     <Styles.Container>
       <Styles.ProductsInCartContainer>
@@ -13,31 +16,21 @@ export default function Cart() {
           <Styles.Price>Price</Styles.Price>
         </Styles.Head>
 
-        <CartItem
-          price={2000}
-          productImg="https://m.media-amazon.com/images/I/71jG+e7roXL._AC_SX679_.jpg"
-          quantity={1}
-          title="Notebook 1"
-        />
-
-        <CartItem
-          price={2000}
-          productImg="https://m.media-amazon.com/images/I/71jG+e7roXL._AC_SX679_.jpg"
-          quantity={1}
-          title="Notebook 1"
-        />
-
-        <CartItem
-          price={2000}
-          productImg="https://m.media-amazon.com/images/I/71jG+e7roXL._AC_SX679_.jpg"
-          quantity={1}
-          title="Notebook 1"
-        />
+        {productsInCart.map((product) => (
+          <CartItem
+            key={product.id}
+            id={product.id}
+            price={product.priceDiscount > 0 ? product.priceDiscount : product.price }
+            productImg={product.image}
+            quantity={1}
+            title={product.title}
+          />
+        ))}
 
         <Styles.TotalContainer>
           <Styles.Total>
             Total:
-            <Styles.TotalPrice> ${8200.00}</Styles.TotalPrice>
+            <Styles.TotalPrice> ${totalPrice.toFixed(2)}</Styles.TotalPrice>
           </Styles.Total>
         </Styles.TotalContainer>
 
