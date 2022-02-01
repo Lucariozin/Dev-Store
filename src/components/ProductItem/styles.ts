@@ -26,6 +26,10 @@ export const ProductInfoContainer = styled.div`
   width: 100%;
   min-height: 2rem;
   padding: 1.5rem 2rem;
+
+  @media (max-width: 300px) {
+    padding: 1rem;
+  }
 `;
 
 export const Title = styled.h3`
@@ -44,10 +48,14 @@ export const Description = styled.p`
 
 export const PriceContainer = styled.div`
   display: flex;
-  height: 2.6rem;
+  min-height: 2.6rem;
   align-items: center;
   gap: 2rem;
   margin-top: 2rem;
+
+  @media (max-width: 300px) {
+    flex-direction: column;
+  }
 `;
 
 export const Prices = styled.div`
@@ -84,6 +92,10 @@ export const AddToCartButton = styled.button`
   &:hover {
     filter: brightness(0.85);
   }
+
+  @media (max-width: 300px) {
+    margin-left: 0;
+  }
 `;
 
 export const InTheCartButton = styled.button`
@@ -93,4 +105,8 @@ export const InTheCartButton = styled.button`
   margin-left: auto;
   cursor: pointer;
   white-space: nowrap;
+
+  @media (max-width: 300px) {
+    margin-left: 0;
+  }
 `;

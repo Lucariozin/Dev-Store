@@ -1,5 +1,6 @@
 import * as Styles from './styles';
 
+import { toastSuccessMessage } from '../../utils/toastSuccessMessage';
 import { useCart } from '../../hooks/useCart';
 import Router from 'next/router';
 
@@ -31,6 +32,8 @@ export function ProductItem({
       priceDiscount,
       title,
     });
+
+    toastSuccessMessage('Product has been added');
   }
 
   return (

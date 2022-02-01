@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState } from 'react';
+import { createContext, ReactNode, useCallback, useContext, useState } from 'react';
 import { Product } from '../@types/product';
 
 interface CartContextData {
@@ -25,20 +25,20 @@ export function CartProvider({ children }: { children: ReactNode }) {
     return ac += product.price;
   }, 0);
 
-  function addProductInCart(product: Product) {
+  const addProductInCart = useCallback((product: Product) => {
     setProductsInCart((oldState) => [ ...oldState, product ]);
-  }
+  }, []);
 
-  function removeProductInCart(productId: number) {
+  const removeProductInCart = useCallback((productId: number) => {
     const newProductsInCart = productsInCart.filter((product) => {
       if (product.id !== productId) return product;
       return;
     });
 
     setProductsInCart(newProductsInCart);
-  }
+  }, [productsInCart]);
 
-  function productIsAlreadyInTheCart(productId: number): boolean {
+  const productIsAlreadyInTheCart = useCallback((productId: number): boolean => {
     let productIsInTheCart = false;
 
     productsInCart.forEach((product) => {
@@ -46,7 +46,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     });
 
     return productIsInTheCart;
-  }
+  }, [productsInCart]);
 
   return (
     <CartContext.Provider value={{

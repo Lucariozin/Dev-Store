@@ -4,7 +4,7 @@ import { CartItem } from '../components/CartItem';
 import { useCart } from '../hooks/useCart';
 
 export default function Cart() {
-  const { productsInCart, totalPrice } = useCart();
+  const { productsInCart, totalPrice, numberOfProducts } = useCart();
 
   return (
     <Styles.Container>
@@ -27,14 +27,18 @@ export default function Cart() {
           />
         ))}
 
-        <Styles.TotalContainer>
-          <Styles.Total>
-            Total:
-            <Styles.TotalPrice> ${totalPrice.toFixed(2)}</Styles.TotalPrice>
-          </Styles.Total>
-        </Styles.TotalContainer>
-
       </Styles.ProductsInCartContainer>
+
+      <Styles.TotalContainer>
+        <Styles.Total>
+          Total:
+          <Styles.TotalPrice> ${totalPrice.toFixed(2)}</Styles.TotalPrice>
+        </Styles.Total>
+      </Styles.TotalContainer>
+
+      {numberOfProducts === 0 && (
+        <Styles.NoProductsInTheCart>No Products In The Cart</Styles.NoProductsInTheCart>
+      )}
     </Styles.Container>
   );
 }

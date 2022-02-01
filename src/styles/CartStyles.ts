@@ -27,6 +27,10 @@ export const Head = styled.header`
     font-weight: 800;
     color: var(--gray-800);
   }
+
+  @media (max-width: 500px) {
+    display: none;
+  }
 `;
 
 export const Product = styled.span``;
@@ -38,6 +42,10 @@ export const Quantity = styled.span`
 export const Price = styled.span`
   margin-left: 20rem;
   margin-right: 2rem;
+
+  @media (max-width: 600px) {
+    margin-left: 10rem;
+  }
 `;
 
 export const TotalContainer = styled.div`
@@ -56,4 +64,12 @@ export const Total = styled.div`
 
 export const TotalPrice = styled.span`
   font-weight: 800;
+`;
+
+export const NoProductsInTheCart = styled.h2`
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--gray-500);
+  margin-top: 10rem;
+  text-align: center;
 `;
