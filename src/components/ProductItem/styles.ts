@@ -1,11 +1,19 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+
   width: 28rem;
   min-height: 34.6rem;
   border-radius: 1rem;
   box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.1);
   background-color: white;
+  opacity: 0;
+  animation: fadeIn 1s forwards ease;
 `;
 
 export const ImgContainer = styled.div`
