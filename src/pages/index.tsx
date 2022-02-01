@@ -1,19 +1,17 @@
 import * as Styles from '../styles/HomeStyles';
 
 import { api } from '../services/api';
-import { useEffect, useState } from 'react';
+import Head from 'next/head';
+import { GetServerSideProps } from 'next';
 
 import { ProductItem } from '../components/ProductItem';
 import { Product } from '../@types/product';
-import Head from 'next/head';
 
-export default function Home() {
-  const [products, setProducts] = useState<Product[]>([]);
+interface HomeProps {
+  products: Product[];
+};
 
-  useEffect(() => {
-    api.get('/api/products').then((response) => setProducts(response.data));
-  }, []);
-
+export default function Home({ products }: HomeProps) {
   return (
     <Styles.Container>
       <Head>
@@ -35,3 +33,13 @@ export default function Home() {
     </Styles.Container>
   )
 }
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const response = await api.get('/api/products');
+
+  return {
+    props: {
+      products: response.data,
+    }
+  };
+};

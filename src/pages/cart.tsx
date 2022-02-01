@@ -1,8 +1,8 @@
 import * as Styles from '../styles/CartStyles';
 
 import Head from 'next/head';
-import { CartItem } from '../components/CartItem';
 import { useCart } from '../hooks/useCart';
+import { CartItem } from '../components/CartItem';
 
 export default function Cart() {
   const { productsInCart, totalPrice, numberOfProducts } = useCart();

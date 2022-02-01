@@ -1,8 +1,8 @@
 import * as Styles from './styles';
 
+import Router from 'next/router';
 import { toastSuccessMessage } from '../../utils/toastSuccessMessage';
 import { useCart } from '../../hooks/useCart';
-import Router from 'next/router';
 
 interface ProductItemProps {
   id: number;
@@ -48,16 +48,17 @@ export function ProductItem({
 
         <Styles.PriceContainer>
           <Styles.Prices>
+
             {priceDiscount > 0 ? (
-              <Styles.Price>${priceDiscount.toFixed(2)}</Styles.Price>
+              <>
+                <Styles.Price>${priceDiscount.toFixed(2)}</Styles.Price>
+                <Styles.OldPrice>${price.toFixed(2)}</Styles.OldPrice>
+              </>
+              
             ) : (
               <Styles.Price>${price.toFixed(2)}</Styles.Price>
             )}
             
-            {priceDiscount > 0 && (
-              <Styles.OldPrice>${price.toFixed(2)}</Styles.OldPrice>
-            )}
-
           </Styles.Prices>
           
           {productIsAlreadyInTheCart(id) ? (
