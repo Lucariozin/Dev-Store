@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 
 import { ProductItem } from '../components/ProductItem';
 import { Product } from '../@types/product';
+import Head from 'next/head';
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -15,6 +16,9 @@ export default function Home() {
 
   return (
     <Styles.Container>
+      <Head>
+        <title>Dev Store | Home</title>
+      </Head>
 
       {products.map((product) => (
         <ProductItem

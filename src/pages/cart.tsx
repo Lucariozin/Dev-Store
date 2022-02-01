@@ -1,5 +1,6 @@
 import * as Styles from '../styles/CartStyles';
 
+import Head from 'next/head';
 import { CartItem } from '../components/CartItem';
 import { useCart } from '../hooks/useCart';
 
@@ -8,6 +9,10 @@ export default function Cart() {
 
   return (
     <Styles.Container>
+      <Head>
+        <title>Dev Store | Cart</title>
+      </Head>
+
       <Styles.ProductsInCartContainer>
 
         <Styles.Head>
